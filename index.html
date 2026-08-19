@@ -107,7 +107,7 @@
             color: #0f172a;
         }
         .badge-count {
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             background: #e2e8f0;
             color: #1e293b;
             padding: 0.1rem 0.6rem;
@@ -118,12 +118,57 @@
             background: #334155;
             color: #e2e8f0;
         }
+
+        /* Increase the current text scale by two sizes. */
+        .text-base {
+            font-size: 1.25rem !important;
+        }
+        .text-lg {
+            font-size: 1.5rem !important;
+        }
+        [class~="text-[12px]"] {
+            font-size: 1rem !important;
+        }
+        [class~="text-[13px]"] {
+            font-size: 1.0625rem !important;
+        }
+        .brand-title {
+            font-size: 1rem !important;
+        }
+        @media (max-width: 639px) {
+            .brand-title {
+                font-size: 0.75rem !important;
+            }
+        }
+        .bangla-t2-t3.text-base {
+            font-size: 1.375rem !important;
+        }
+        .bangla-t2-t3[class~="text-[13px]"] {
+            font-size: 1.1875rem !important;
+        }
+        .t2-heading {
+            font-size: 1.375rem !important;
+        }
+        .t2-subheading {
+            font-size: 1.25rem !important;
+        }
+        .t2-control {
+            font-size: 1rem !important;
+        }
+        .t3-card-icon {
+            font-size: 5rem !important;
+            line-height: 1;
+        }
+        #q-icon {
+            font-size: 5rem !important;
+            line-height: 1;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 font-sans antialiased min-h-screen flex flex-col">
 
     <!-- ========== TOAST ========== -->
-    <div id="toast" class="fixed top-20 right-4 z-50 pointer-events-none transform transition-all duration-300 translate-x-full opacity-0 bg-slate-900 dark:bg-amber-500 text-white dark:text-slate-950 text-xs font-bold px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 dark:border-amber-400">
+    <div id="toast" class="fixed top-20 right-4 z-50 pointer-events-none transform transition-all duration-300 translate-x-full opacity-0 bg-slate-900 dark:bg-amber-500 text-white dark:text-slate-950 text-base font-bold px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 dark:border-amber-400">
         <i class="fa-solid fa-circle-check text-amber-400 dark:text-slate-950"></i>
         <span id="toast-msg">বার্তা</span>
     </div>
@@ -134,40 +179,42 @@
             <div class="flex items-center justify-between h-16">
 
                 <!-- Brand -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('t1')">
+                <div class="flex items-center gap-3 cursor-pointer flex-1 min-w-0" onclick="switchTab('t1')">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-red-500 to-slate-900 flex items-center justify-center shadow-md">
                         <span class="text-lg">🇩🇪</span>
                     </div>
-                    <div class="leading-tight hidden sm:block">
+                    <div class="leading-tight min-w-0">
                         <div class="flex items-center gap-2">
-                            <span class="font-extrabold text-base text-slate-900 dark:text-white">Deutsch mit Shakil</span>
-                            <span class="text-[9px] font-black px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-300 dark:border-amber-800">A1</span>
+                            <span class="brand-title font-extrabold text-slate-900 dark:text-white whitespace-nowrap">Deutsch mit Shakil</span>
+                            <span class="text-[13px] font-black px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-300 dark:border-amber-800">A1</span>
                         </div>
-                        <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Goethe Start Deutsch 1 · Sprechen</p>
-                    </div>
-                    <div class="block sm:hidden">
-                        <span class="font-extrabold text-sm text-slate-900 dark:text-white">DmS</span>
-                        <span class="text-[9px] font-black ml-1 px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">A1</span>
+                        <p class="hidden sm:block text-[12px] text-slate-500 dark:text-slate-400 font-medium">Goethe A1 · Sprechen</p>
                     </div>
                 </div>
 
                 <!-- Desktop Tabs -->
                 <nav class="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-2xl border border-slate-200 dark:border-slate-700">
-                    <button onclick="switchTab('t1')" id="tab-t1" class="tab-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"><i class="fa-solid fa-user"></i><span>Teil 1</span></button>
-                    <button onclick="switchTab('t2')" id="tab-t2" class="tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-circle-question"></i><span>Teil 2</span></button>
-                    <button onclick="switchTab('t3')" id="tab-t3" class="tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-hand-holding-heart"></i><span>Teil 3</span></button>
-                    <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-amber-500"></i><span>কুইজ</span></button>
+                    <button onclick="switchTab('t1')" id="tab-t1" class="tab-btn active px-3.5 py-1.5 rounded-xl text-base font-bold transition-all flex items-center gap-1.5"><i class="fa-solid fa-user"></i><span>Teil 1</span></button>
+                    <button onclick="switchTab('t2')" id="tab-t2" class="tab-btn px-3.5 py-1.5 rounded-xl text-base font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-circle-question"></i><span>Teil 2</span></button>
+                    <button onclick="switchTab('t3')" id="tab-t3" class="tab-btn px-3.5 py-1.5 rounded-xl text-base font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-hand-holding-heart"></i><span>Teil 3</span></button>
+                    <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-3.5 py-1.5 rounded-xl text-base font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-amber-500"></i><span>কুইজ</span></button>
                 </nav>
 
                 <!-- Right Controls -->
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 shrink-0">
                     <!-- Speed -->
-                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-[10px] font-bold">
-                        <button onclick="setTtsSpeed(0.6)" id="sp-06" class="speed-btn px-1.5 py-0.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition">0.6</button>
-                        <button onclick="setTtsSpeed(0.8)" id="sp-08" class="speed-btn px-1.5 py-0.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition">0.8</button>
-                        <button onclick="setTtsSpeed(1.0)" id="sp-10" class="speed-btn active-speed px-1.5 py-0.5 rounded-lg transition">1.0</button>
-                        <button onclick="setTtsSpeed(1.2)" id="sp-12" class="speed-btn px-1.5 py-0.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition">1.2</button>
-                        <button onclick="setTtsSpeed(1.5)" id="sp-15" class="speed-btn px-1.5 py-0.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition">1.5</button>
+                    <select id="tts-speed" onchange="setTtsSpeed(this.value)" aria-label="Audio speed" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-1.5 text-[12px] font-bold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <option value="0.6">0.6x</option>
+                        <option value="0.8">0.8x</option>
+                        <option value="1.0" selected>1.0x</option>
+                        <option value="1.2">1.2x</option>
+                        <option value="1.5">1.5x</option>
+                    </select>
+                    <!-- Page Zoom -->
+                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <button onclick="changePageZoom(-10)" aria-label="Zoom out" title="Zoom out" class="w-7 h-8 flex items-center justify-center text-base font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition">−</button>
+                        <span id="page-zoom-label" class="min-w-11 text-center text-[12px] font-bold text-slate-700 dark:text-slate-200">100%</span>
+                        <button onclick="changePageZoom(10)" aria-label="Zoom in" title="Zoom in" class="w-7 h-8 flex items-center justify-center text-base font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition">+</button>
                     </div>
                     <!-- Theme -->
                     <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center transition">
@@ -179,11 +226,11 @@
         </div>
 
         <!-- Mobile Tabs -->
-        <div class="md:hidden flex items-center justify-around bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-1.5 text-[10px] font-bold">
-            <button onclick="switchTab('t1')" id="mtab-t1" class="flex flex-col items-center gap-0.5 text-sky-600 dark:text-amber-400"><i class="fa-solid fa-user text-sm"></i><span>Teil 1</span></button>
-            <button onclick="switchTab('t2')" id="mtab-t2" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-circle-question text-sm"></i><span>Teil 2</span></button>
-            <button onclick="switchTab('t3')" id="mtab-t3" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-hand-holding-heart text-sm"></i><span>Teil 3</span></button>
-            <button onclick="switchTab('quiz')" id="mtab-quiz" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-gamepad text-sm text-amber-500"></i><span>কুইজ</span></button>
+        <div class="md:hidden flex items-center justify-around bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-1.5 text-[12px] font-bold">
+            <button onclick="switchTab('t1')" id="mtab-t1" class="flex flex-col items-center gap-0.5 text-sky-600 dark:text-amber-400"><i class="fa-solid fa-user text-lg"></i><span>Teil 1</span></button>
+            <button onclick="switchTab('t2')" id="mtab-t2" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-circle-question text-lg"></i><span>Teil 2</span></button>
+            <button onclick="switchTab('t3')" id="mtab-t3" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-hand-holding-heart text-lg"></i><span>Teil 3</span></button>
+            <button onclick="switchTab('quiz')" id="mtab-quiz" class="flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400"><i class="fa-solid fa-gamepad text-lg text-amber-500"></i><span>কুইজ</span></button>
         </div>
     </header>
 
@@ -197,17 +244,17 @@
 
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <div class="flex items-center gap-2"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">Teil 1</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Sich vorstellen</h2></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400">নিজের পরিচয় দিন</p>
+                    <div class="flex items-center gap-2"><span class="px-2.5 py-0.5 rounded-full text-[12px] font-black bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">Teil 1</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Sich vorstellen</h2></div>
+                    <p class="text-base text-slate-600 dark:text-slate-400">নিজের পরিচয় দিন</p>
                 </div>
-                <button onclick="fillSample()" class="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i>নমুনা পূরণ</button>
+                <button onclick="fillSample()" class="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i>নমুনা পূরণ</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <!-- Form -->
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2"><span>আপনার তথ্য পূরণ করুন</span><span class="text-[10px] font-normal text-slate-500">Formular</span></h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2"><span>আপনার তথ্য পূরণ করুন</span><span class="text-[12px] font-normal text-slate-500">Formular</span></h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-base">
                         <div><label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">নাম (Name)</label><input id="v-name" value="Shakil Shawon" oninput="renderVorstellen()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
                         <div><label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">বয়স (Alter)</label><input id="v-age" value="26" oninput="renderVorstellen()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
                         <div><label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">দেশ (Land)</label><input id="v-country" value="Bangladesch" oninput="renderVorstellen()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
@@ -222,23 +269,18 @@
                 <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl p-5 border border-slate-800 shadow-md flex flex-col justify-between space-y-4">
                     <div>
                         <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-                            <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-volume-high"></i><span>উপস্থাপনা</span></h3>
-                            <button onclick="speakFull()" class="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition flex items-center gap-1 shadow"><i class="fa-solid fa-play"></i>সম্পূর্ণ</button>
+                            <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-volume-high"></i><span>উপস্থাপনা</span></h3>
+                            <button onclick="speakFull()" class="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-base rounded-lg transition flex items-center gap-1 shadow"><i class="fa-solid fa-play"></i>সম্পূর্ণ</button>
                         </div>
-                        <div id="v-output" class="space-y-2 text-xs sm:text-sm"></div>
+                        <div id="v-output" class="space-y-2 text-base sm:text-lg"></div>
                     </div>
-                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-base space-y-1">
                         <div class="flex items-center justify-between text-amber-300 font-bold"><span>বানান (Buchstabieren)</span><button onclick="speakText(document.getElementById('v-spell').innerText)" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p id="v-spell" class="font-mono tracking-widest uppercase font-bold text-sm text-slate-200">S-H-A-K-I-L</p>
+                        <p id="v-spell" class="font-mono tracking-widest uppercase font-bold text-lg text-slate-200">S-H-A-K-I-L</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Alphabet -->
-            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
-                <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-spell-check text-sky-500"></i><span>বর্ণমালা (Alphabet) · ক্লিক করে শুনুন</span></h3>
-                <div id="alpha-grid" class="flex flex-wrap gap-1.5"></div>
-            </div>
         </section>
 
         <!-- ============================================================ -->
@@ -246,10 +288,12 @@
         <!-- ============================================================ -->
         <section id="view-t2" class="hidden space-y-5">
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div><span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Teil 2</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Information Fragen & Antworten</h2><p class="text-xs text-slate-600 dark:text-slate-400">বিষয়ভিত্তিক প্রশ্ন ও উত্তর · বাংলা অর্থ সহ</p></div>
+                <div><span class="px-2.5 py-0.5 rounded-full text-[12px] font-black bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Teil 2</span><h2 class="t2-heading text-lg font-extrabold text-slate-900 dark:text-white">Information Fragen & Antworten</h2><p class="t2-subheading bangla-t2-t3 text-base text-slate-600 dark:text-slate-400">বিষয়ভিত্তিক প্রশ্ন ও উত্তর · বাংলা অর্থ সহ</p></div>
                 <div class="flex items-center gap-3 flex-wrap">
                     <span id="t2-count" class="badge-count">115</span>
-                    <div class="w-full sm:w-48"><select id="t2-filter" onchange="renderT2()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"><option value="all">সকল বিষয়</option><option value="Reisen">Reisen</option><option value="Lernen">Lernen</option><option value="Einkaufen">Einkaufen</option><option value="Freizeit">Freizeit</option><option value="Essen">Essen</option><option value="Arbeit">Arbeit</option><option value="Wohnen">Wohnen</option><option value="Sport">Sport</option><option value="Trinken">Trinken</option><option value="Familie">Familie</option><option value="Termin">Termin</option><option value="Freunde">Freunde</option><option value="Person">Person</option><option value="Beruf">Beruf</option><option value="Restaurant">Restaurant</option><option value="Kleidung">Kleidung</option><option value="Post">Post</option><option value="Bank">Bank</option><option value="Schule">Schule</option><option value="Urlaub">Urlaub</option></select></div>
+                    <input id="t2-search" type="search" oninput="renderT2()" placeholder="Suchen..." aria-label="Teil 2 durchsuchen" class="w-full sm:w-44 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-base text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" />
+                    <select id="t2-filter" onchange="renderT2()" aria-label="Teil 2 Thema" class="t2-control w-full sm:w-40 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"><option value="all">All</option><option value="Reisen">Reisen</option><option value="Lernen">Lernen</option><option value="Einkaufen">Einkaufen</option><option value="Freizeit">Freizeit</option><option value="Essen">Essen</option><option value="Arbeit">Arbeit</option><option value="Wohnen">Wohnen</option><option value="Sport">Sport</option><option value="Trinken">Trinken</option><option value="Familie">Familie</option><option value="Termin">Termin</option><option value="Freunde">Freunde</option><option value="Person">Person</option><option value="Beruf">Beruf</option><option value="Restaurant">Restaurant</option><option value="Kleidung">Kleidung</option><option value="Post">Post</option><option value="Bank">Bank</option><option value="Schule">Schule</option><option value="Urlaub">Urlaub</option></select>
+                    <select id="t2-sort" onchange="renderT2()" aria-label="Teil 2 sortieren" class="t2-control w-full sm:w-36 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"><option value="az">A bis Z</option><option value="random">Zufällig</option><option value="za">Z bis A</option></select>
                 </div>
             </div>
             <div id="t2-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -260,10 +304,12 @@
         <!-- ============================================================ -->
         <section id="view-t3" class="hidden space-y-5">
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div><span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Teil 3</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Bitten & Reaktion</h2><p class="text-xs text-slate-600 dark:text-slate-400">২টি বিনীত অনুরোধ ও ২টি উত্তর</p></div>
+                <div><span class="px-2.5 py-0.5 rounded-full text-[12px] font-black bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Teil 3</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Bitten & Reaktion</h2><p class="bangla-t2-t3 text-base text-slate-600 dark:text-slate-400">২টি বিনীত অনুরোধ ও ২টি উত্তর</p></div>
                 <div class="flex items-center gap-3 flex-wrap">
                     <span id="t3-count" class="badge-count">118</span>
-                    <div class="flex gap-1 overflow-x-auto"><button onclick="filterT3('all')" id="t3-all" class="art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 shadow-sm">সব</button><button onclick="filterT3('Der')" id="t3-der" class="art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-slate-200 dark:hover:bg-slate-700">Der</button><button onclick="filterT3('Die')" id="t3-die" class="art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-pink-600 dark:text-pink-400 hover:bg-slate-200 dark:hover:bg-slate-700">Die</button><button onclick="filterT3('Das')" id="t3-das" class="art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 hover:bg-slate-200 dark:hover:bg-slate-700">Das</button></div>
+                    <input id="t3-search" type="search" oninput="renderT3()" placeholder="Suchen..." aria-label="Teil 3 durchsuchen" class="w-full sm:w-44 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-base text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" />
+                    <select id="t3-sort" onchange="renderT3()" aria-label="Teil 3 sortieren" class="w-full sm:w-36 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"><option value="az">A -Z</option><option value="random">Zufällig</option><option value="za">Z - A</option></select>
+                    <div class="flex gap-1 overflow-x-auto sm:ml-auto"><button onclick="filterT3('all')" id="t3-all" class="art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-amber-500 text-slate-950 shadow-sm">সব</button><button onclick="filterT3('Der')" id="t3-der" class="art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-slate-200 dark:hover:bg-slate-700">Der</button><button onclick="filterT3('Die')" id="t3-die" class="art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-slate-100 dark:bg-slate-800 text-pink-600 dark:text-pink-400 hover:bg-slate-200 dark:hover:bg-slate-700">Die</button><button onclick="filterT3('Das')" id="t3-das" class="art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 hover:bg-slate-200 dark:hover:bg-slate-700">Das</button></div>
                 </div>
             </div>
             <div id="t3-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -275,47 +321,60 @@
         <section id="view-quiz" class="hidden space-y-5">
             <div class="max-w-2xl mx-auto space-y-5">
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div><span class="text-[10px] font-black text-amber-500 uppercase tracking-wider">কুইজ অনুশীলন</span><h2 class="text-base font-extrabold text-slate-900 dark:text-white">A1 Sprechen প্র্যাকটিস</h2></div>
-                    <div class="text-right"><span class="text-[10px] text-slate-500 block">স্কোর</span><span class="text-xl font-extrabold text-amber-500" id="q-score">0 / 0</span></div>
+                    <div><span class="text-[12px] font-black text-amber-500 uppercase tracking-wider">কুইজ অনুশীলন</span><h2 class="text-base font-extrabold text-slate-900 dark:text-white">A1 Sprechen প্র্যাকটিস</h2></div>
+                    <div class="text-right"><span class="text-[12px] text-slate-500 block">স্কোর</span><span class="text-base font-extrabold text-amber-500" id="q-score">0 / 0</span></div>
                 </div>
 
                 <!-- Quiz Controls -->
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-3 items-center justify-between">
                     <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300">ফিল্টার:</label>
-                        <select id="quiz-filter" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <label class="text-base font-bold text-slate-700 dark:text-slate-300">ফিল্টার:</label>
+                        <select id="quiz-filter" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
                             <option value="all">সব</option>
                             <option value="t2">Teil 2</option>
                             <option value="t3">Teil 3</option>
                         </select>
                     </div>
                     <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300">প্রশ্ন সংখ্যা:</label>
-                        <select id="quiz-count" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <label class="text-base font-bold text-slate-700 dark:text-slate-300">প্রশ্ন সংখ্যা:</label>
+                        <select id="quiz-count" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
                             <option value="5">৫</option>
                             <option value="10" selected>১০</option>
                             <option value="15">১৫</option>
                             <option value="20">২০</option>
+                            <option value="30">৩০</option>
+                            <option value="40">৪০</option>
+                            <option value="50">৫০</option>
                             <option value="0">সব</option>
                         </select>
-                        <button onclick="resetQuiz()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-rotate-right"></i> রিসেট</button>
+                        <button onclick="resetQuiz()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-rotate-right"></i> রিসেট</button>
                     </div>
                 </div>
 
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-md space-y-5 relative overflow-hidden">
                     <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                        <span id="q-badge" class="px-2.5 py-1 rounded-lg text-[10px] font-black bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">Teil 2</span>
-                        <span id="q-progress" class="text-xs font-bold text-slate-500">1 / 10</span>
+                        <span id="q-badge" class="px-2.5 py-1 rounded-lg text-[12px] font-black bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">Teil 2</span>
+                        <span id="q-progress" class="text-base font-bold text-slate-500">1 / 10</span>
                     </div>
                     <div class="text-center py-2 space-y-2">
-                        <span id="q-icon" class="text-5xl inline-block">☕</span>
-                        <h3 id="q-title" class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Die Tasse Kaffee</h3>
-                        <p id="q-prompt" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">সঠিক বিনীত অনুরোধটি বেছে নিন</p>
+                        <span id="q-icon" class="text-base inline-block">☕</span>
+                        <h3 id="q-title" class="text-lg sm:text-base font-extrabold text-slate-900 dark:text-white">Die Tasse Kaffee</h3>
+                        <p id="q-prompt" class="text-base sm:text-lg text-slate-600 dark:text-slate-400 font-medium">সঠিক বিনীত অনুরোধটি বেছে নিন</p>
+                        <p id="q-final-result" class="hidden text-base font-bold text-amber-500"></p>
+                        <p id="q-final-message" class="hidden text-base font-bold text-emerald-500"></p>
                     </div>
                     <div id="q-opts" class="space-y-2.5"></div>
+                    <div class="flex items-center justify-between gap-3 border-t border-slate-100 dark:border-slate-800 pt-4">
+                        <button id="q-prev" type="button" onclick="navigateQuiz(-1)" aria-label="Previous quiz question" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-base font-bold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-arrow-left"></i><span>আগের প্রশ্ন</span>
+                        </button>
+                        <button id="q-next" type="button" onclick="navigateQuiz(1)" aria-label="Next quiz question" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-base border border-amber-400 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                            <span>পরের প্রশ্ন</span><i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                     <div id="q-exp" class="hidden p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-                        <span class="text-[10px] font-black text-amber-500 block">ব্যাখ্যা</span>
-                        <p id="q-exp-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+                        <span class="text-[12px] font-black text-amber-500 block">ব্যাখ্যা</span>
+                        <p id="q-exp-text" class="text-base text-slate-700 dark:text-slate-300 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
@@ -324,15 +383,21 @@
         <!-- ========== UPCOMING COURSE LINK (font slider removed) ========== -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 dark:border-slate-800 pt-6">
             <div></div>
-            <a href="https://forms.gle/f5jVHmwEgXgnWkG57" target="_blank" class="inline-flex items-center gap-2 px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs rounded-2xl shadow-md transition-all"><i class="fa-solid fa-arrow-right-to-bracket"></i> আসন্ন কোর্সের জন্য নিবন্ধন করুন</a>
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+                <a href="https://www.facebook.com/deutsch.mit.shakil/" target="_blank" rel="noopener noreferrer" aria-label="Visit Deutsch mit Shakil on Facebook" title="Facebook" class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-blue-700 hover:bg-blue-600 text-white shadow-md transition-all"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                <a href="https://m.me/deutsch.mit.shakil/" target="_blank" rel="noopener noreferrer" aria-label="Message Deutsch mit Shakil on Facebook" title="Facebook Messenger" class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-md transition-all"><i class="fa-brands fa-facebook-messenger text-lg"></i></a>
+                <a href="https://www.youtube.com/@DeutschmitShakil" target="_blank" rel="noopener noreferrer" aria-label="Visit Deutsch mit Shakil on YouTube" title="YouTube" class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-red-600 hover:bg-red-500 text-white shadow-md transition-all"><i class="fa-brands fa-youtube text-lg"></i></a>
+                <a href="https://www.instagram.com/deutschmitshakil/" target="_blank" rel="noopener noreferrer" aria-label="Visit Deutsch mit Shakil on Instagram" title="Instagram" class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-pink-600 hover:bg-pink-500 text-white shadow-md transition-all"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="https://forms.gle/f5jVHmwEgXgnWkG57" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-base rounded-2xl shadow-md transition-all"><i class="fa-solid fa-arrow-right-to-bracket"></i> আসন্ন কোর্সের জন্য নিবন্ধন করুন</a>
+            </div>
         </div>
 
     </main>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm py-4 mt-6 text-center text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm py-4 mt-6 text-center text-[12px] text-slate-500 dark:text-slate-400 font-medium">
         <p>🇩🇪 Deutsch mit Shakil · Goethe A1 Sprechen Master</p>
-        <p class="mt-0.5 text-[9px] text-slate-400 dark:text-slate-500">Für A2 &amp; B1 Erweiterung bereit · <i class="fa-regular fa-heart text-amber-500"></i> Viel Erfolg!</p>
+        <p class="mt-0.5 text-[13px] text-slate-400 dark:text-slate-500">A2 &amp; B1 Level is under construction · <i class="fa-regular fa-heart text-amber-500"></i> Viel Erfolg!</p>
     </footer>
 
     <script>
@@ -342,10 +407,10 @@
 
         // ---- Teil 2: 115 Einträge (aus den PDFs extrahiert) mit Bangla ----
         const T2_DATA = [
-            { id: 1, word: 'Hotel', theme: 'Reisen', bn: 'হোটেল', q1: 'Schlafen Sie im Hotel?',
-                q1_bn: 'আপনি কি হোটেলে ঘুমান?', a1: 'Ja, ich schlafe im Hotel.', a1_bn: 'হাঁ, আমি হোটেলে ঘুমাই।',
-                q2: 'Ist das Hotel gut?', q2_bn: 'হোটেলটি কি ভালো?', a2: 'Ja, das Hotel ist gut.',
-                a2_bn: 'হাঁ, হোটেলটি ভালো।' },
+            { id: 1, word: 'Hotel', theme: 'Reisen', bn: 'হোটেল', q1: 'Übernachten Sie im Hotel?',
+                q1_bn: 'আপনি কি হোটেলে ঘুমান?', a1: 'Ja, ich übernachte/schlafe im Hotel.', a1_bn: 'হাঁ, আমি হোটেলে ঘুমাই।',
+                q2: 'Haben Sie ein Hotel reserviert?', q2_bn: 'আপনি কি একটি হোটেল রেজার্ভ করেছেন?', a2: 'Ja, ich habe ein Hotel reserviert.',
+                a2_bn: 'হাঁ, আমি একটি হোটেল রেজার্ভ করেছি।' },
             { id: 2, word: 'Zug', theme: 'Reisen', bn: 'ট্রেন', q1: 'Fahren Sie mit dem Zug?',
                 q1_bn: 'আপনি কি ট্রেনে করে যান?', a1: 'Ja, ich fahre mit dem Zug.', a1_bn: 'হাঁ, আমি ট্রেনে করে যাই।',
                 q2: 'Ist der Zug schnell?', q2_bn: 'ট্রেনটি কি দ্রুতগামী?', a2: 'Ja, der Zug ist sehr schnell.',
@@ -355,7 +420,7 @@
                 a1_bn: 'হাঁ, আমার একটি অভিধান প্রয়োজন।', q2: 'Ist das Wörterbuch neu?', q2_bn: 'অভিধানটি কি নতুন?',
                 a2: 'Ja, das Wörterbuch ist neu.', a2_bn: 'হাঁ, অভিধানটি নতুন।' },
             { id: 4, word: 'Internet', theme: 'Lernen', bn: 'ইন্টারনেট', q1: 'Lernen Sie im Internet?',
-                q1_bn: 'আপনি কি ইন্টারনেটে শেখেন?', a1: 'Ja, das Internet ist gut.', a1_bn: 'হাঁ, ইন্টারনেট ভালো।',
+                q1_bn: 'আপনি কি ইন্টারনেটে শেখেন?', a1: 'Ja, ich lerne im Internet.', a1_bn: 'হাঁ, ইন্টারনেটে শেখি।',
                 q2: 'Haben Sie Internet zu Hause?', q2_bn: 'আপনার কি বাড়িতে ইন্টারনেট আছে?', a2: 'Ja, ich habe Internet zu Hause.',
                 a2_bn: 'হাঁ, আমার বাড়িতে ইন্টারনেট আছে।' },
             { id: 5, word: 'Obst', theme: 'Einkaufen', bn: 'ফল', q1: 'Kaufen Sie Obst auf dem Markt?',
@@ -816,78 +881,70 @@
                 q2: 'Darf ich bitte ein Glas Wasser haben?', q2_bn: 'আমি কি দয়া করে এক গ্লাস পানি পেতে পারি?',
                 a2: 'Ja, gerne. Bitte sehr.', a2_bn: 'হাঁ, সানন্দে। এই যে নিন।' },
             { id: 2, article: 'Der', word: 'Der Kugelschreiber', icon: '🖊️', bn: 'কলম',
-                q1: 'Können Sie mir bitte einen Kugelschreiber geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে একটি কলম দিতে পারেন?', a1: 'Ja, gerne. Bitte sehr.',
-                a1_bn: 'হাঁ, সানন্দে। এই যে নিন।',
-                q2: 'Darf ich bitte Ihren Kugelschreiber benutzen?',
-                q2_bn: 'আমি কি দয়া করে আপনার কলমটি ব্যবহার করতে পারি?', a2: 'Ja, natürlich. Hier bitte.',
-                a2_bn: 'হাঁ, অবশ্যই। এই নিন।' },
+                q1: 'Können Sie mir bitte einen Kugelschreiber geben?', q1_bn: 'আপনি কি আমাকে দয়া করে একটি কলম দিতে পারেন?',
+                a1: 'Ja, gerne. Bitte sehr.', a1_bn: 'হাঁ, সানন্দে। এই যে নিন।',
+                q2: 'Darf ich bitte Ihren Kugelschreiber benutzen?', q2_bn: 'আমি কি দয়া করে আপনার কলমটি ব্যবহার করতে পারি?',
+                a2: 'Ja, natürlich. Hier bitte.', a2_bn: 'হাঁ, অবশ্যই। এই নিন।' },
             { id: 3, article: 'Das', word: 'Das Ticket', icon: '🎫', bn: 'টিকেট',
-                q1: 'Können Sie mir bitte ein Ticket nach Berlin geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে বার্লিনের একটি টিকেট দিতে পারেন?', a1: 'Ja, gerne. Einen Moment bitte.',
-                a1_bn: 'হাঁ, সানন্দে। দয়া করে এক মুহূর্ত অপেক্ষা করুন।',
-                q2: 'Möchten Sie mir bitte ein Ticket reservieren?',
-                q2_bn: 'আপনি কি দয়া করে আমার জন্য একটি টিকেট বুক করতে পারেন?', a2: 'Ja, natürlich. Hier bitte.',
-                a2_bn: 'হাঁ, অবশ্যই। এই নিন।' },
+                q1: 'Können Sie mir bitte ein Ticket nach Berlin geben?', q1_bn: 'আপনি কি আমাকে দয়া করে বার্লিনের একটি টিকেট দিতে পারেন?',
+                a1: 'Ja, gerne. Einen Moment bitte.', a1_bn: 'হাঁ, সানন্দে। দয়া করে এক মুহূর্ত অপেক্ষা করুন।',
+                q2: 'Möchten Sie mir bitte ein Ticket reservieren?', q2_bn: 'আপনি কি দয়া করে আমার জন্য একটি টিকেট বুক করতে পারেন?',
+                a2: 'Ja, natürlich. Hier bitte.', a2_bn: 'হাঁ, অবশ্যই। এই নিন।' },
             { id: 4, article: 'Das', word: 'Das Wörterbuch', icon: '📖', bn: 'অভিধান',
-                q1: 'Können Sie mir bitte das Wörterbuch geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে অভিধানটি দিতে পারেন?', a1: 'Ja, natürlich. Hier ist es.',
-                a1_bn: 'হাঁ, অবশ্যই। এই যে এটি।',
+                q1: 'Können Sie mir bitte das Wörterbuch geben?', q1_bn: 'আপনি কি আমাকে দয়া করে অভিধানটি দিতে পারেন?',
+                a1: 'Ja, natürlich. Hier ist es.', a1_bn: 'হাঁ, অবশ্যই। এই যে এটি।',
                 q2: 'Darf ich bitte das Wörterbuch benutzen?', q2_bn: 'আমি কি দয়া করে অভিধানটি ব্যবহার করতে পারি?',
                 a2: 'Ja, bitte sehr.', a2_bn: 'হাঁ, এই যে নিন।' },
             { id: 5, article: 'Die', word: 'Die Rechnung', icon: '🧾', bn: 'বিল',
                 q1: 'Können wir bitte die Rechnung haben?', q1_bn: 'আমরা কি দয়া করে বিলটি পেতে পারি?',
                 a1: 'Ja, gerne. Kommt sofort.', a1_bn: 'হাঁ, সানন্দে। এখনই আনছি।',
-                q2: 'Können wir bitte jetzt bezahlen?', q2_bn: 'আমরা কি দয়া করে এখন বিল দিতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
+                q2: 'Können wir bitte jetzt bezahlen?', q2_bn: 'আমরা কি দয়া করে এখন বিল দিতে পারি?',
+                a2: 'Ja, natürlich.', a2_bn: 'হাঁ, অবশ্যই।' },
             { id: 6, article: 'Das', word: 'Das Handy', icon: '📱', bn: 'মোবাইল ফোন',
-                q1: 'Können Sie mir bitte Ihr Handy geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে আপনার মোবাইলটি দিতে পারেন?', a1: 'Ja, natürlich. Hier bitte.',
-                a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
-                q2: 'Darf ich bitte mal mit Ihrem Handy telefonieren?',
-                q2_bn: 'আমি কি দয়া করে আপনার মোবাইল দিয়ে একবার ফোন করতে পারি?', a2: 'Ja, gerne. Bitte sehr.',
-                a2_bn: 'হাঁ, সানন্দে। এই যে নিন।' },
-            { id: 7, article: 'Die', word: 'Die Milch', icon: '🥛', bn: 'দুধ', q1: 'Können Sie mir bitte die Milch geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে দুধটি দিতে পারেন?', a1: 'Ja, bitte sehr.', a1_bn: 'হাঁ, এই যে নিন।',
-                q2: 'Darf ich bitte etwas Milch haben?', q2_bn: 'আমি কি দয়া করে কিছু দুধ পেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
-            { id: 8, article: 'Das', word: 'Das Geld', icon: '💰', bn: 'টাকা', q1: 'Können Sie mir bitte Geld geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে কিছু টাকা দিতে পারেন?', a1: 'Ja, natürlich. Kein Problem.',
-                a1_bn: 'হাঁ, অবশ্যই। কোনো সমস্যা নেই।',
+                q1: 'Können Sie mir bitte Ihr Handy geben?', q1_bn: 'আপনি কি আমাকে দয়া করে আপনার মোবাইলটি দিতে পারেন?',
+                a1: 'Ja, natürlich. Hier bitte.', a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
+                q2: 'Darf ich bitte mal mit Ihrem Handy telefonieren?', q2_bn: 'আমি কি দয়া করে আপনার মোবাইল দিয়ে একবার ফোন করতে পারি?',
+                a2: 'Ja, gerne. Bitte sehr.', a2_bn: 'হাঁ, সানন্দে। এই যে নিন।' },
+            { id: 7, article: 'Die', word: 'Die Milch', icon: '🥛', bn: 'দুধ',
+                q1: 'Können Sie mir bitte die Milch geben?', q1_bn: 'আপনি কি আমাকে দয়া করে দুধটি দিতে পারেন?',
+                a1: 'Ja, bitte sehr.', a1_bn: 'হাঁ, এই যে নিন।',
+                q2: 'Darf ich bitte etwas Milch haben?', q2_bn: 'আমি কি দয়া করে কিছু দুধ পেতে পারি?',
+                a2: 'Ja, natürlich.', a2_bn: 'হাঁ, অবশ্যই।' },
+            { id: 8, article: 'Das', word: 'Das Geld', icon: '💰', bn: 'টাকা',
+                q1: 'Können Sie mir bitte Geld geben?', q1_bn: 'আপনি কি আমাকে দয়া করে কিছু টাকা দিতে পারেন?',
+                a1: 'Ja, natürlich. Kein Problem.', a1_bn: 'হাঁ, অবশ্যই। কোনো সমস্যা নেই।',
                 q2: 'Können Sie mir bitte Geld wechseln?', q2_bn: 'আপনি কি দয়া করে আমাকে টাকা খুচরা করে দিতে পারেন?',
                 a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
-            { id: 9, article: 'Die', word: 'Die Tür', icon: '🚪', bn: 'দরজা', q1: 'Können Sie bitte die Tür zumachen?',
-                q1_bn: 'আপনি কি দয়া করে দরজাটি বন্ধ করতে পারেন?', a1: 'Ja, mache ich sofort.',
-                a1_bn: 'হাঁ, এখনই করছি।',
-                q2: 'Möchten Sie bitte die Tür schließen?', q2_bn: 'আপনি কি দয়া করে দরজাটি বন্ধ করবেন?', a2: 'Ja, gerne.',
-                a2_bn: 'হাঁ, সানন্দে।' },
+            { id: 9, article: 'Die', word: 'Die Tür', icon: '🚪', bn: 'দরজা',
+                q1: 'Können Sie bitte die Tür zumachen?', q1_bn: 'আপনি কি দয়া করে দরজাটি বন্ধ করতে পারেন?',
+                a1: 'Ja, mache ich sofort.', a1_bn: 'হাঁ, এখনই করছি।',
+                q2: 'Möchten Sie bitte die Tür schließen?', q2_bn: 'আপনি কি দয়া করে দরজাটি বন্ধ করবেন?',
+                a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
             { id: 10, article: 'Das', word: 'Das Fenster', icon: '🪟', bn: 'জানালা',
                 q1: 'Können Sie bitte das Fenster aufmachen?', q1_bn: 'আপনি কি দয়া করে জানালাটি খুলে দিতে পারেন?',
                 a1: 'Ja, gerne.', a1_bn: 'হাঁ, সানন্দে।',
-                q2: 'Möchten Sie bitte das Fenster öffnen?', q2_bn: 'আপনি কি দয়া করে জানালাটি খুলবেন?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
+                q2: 'Möchten Sie bitte das Fenster öffnen?', q2_bn: 'আপনি কি দয়া করে জানালাটি খুলবেন?',
+                a2: 'Ja, natürlich.', a2_bn: 'হাঁ, অবশ্যই।' },
             { id: 11, article: 'Der', word: 'Der Stadtplan', icon: '🗺️', bn: 'শহরের মানচিত্র',
-                q1: 'Können Sie mir bitte einen Stadtplan geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে শহরের মানচিত্রটি দিতে পারেন?', a1: 'Ja, bitte sehr. Hier ist er.',
-                a1_bn: 'হাঁ, অবশ্যই। এই যে এটি।',
-                q2: 'Darf ich bitte den Stadtplan ansehen?', q2_bn: 'আমি কি দয়া করে মানচিত্রটি দেখতে পারি?', a2: 'Ja, gerne.',
-                a2_bn: 'হাঁ, সানন্দে।' },
-            { id: 12, article: 'Das', word: 'Das Buch', icon: '📕', bn: 'বই', q1: 'Können Sie mir bitte das Buch geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে বইটি দিতে পারেন?', a1: 'Ja, natürlich. Bitte.',
-                a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
-                q2: 'Darf ich bitte dieses Buch lesen?', q2_bn: 'আমি কি দয়া করে এই বইটি পড়তে পারি?', a2: 'Ja, gerne.',
-                a2_bn: 'হাঁ, সানন্দে।' },
+                q1: 'Können Sie mir bitte einen Stadtplan geben?', q1_bn: 'আপনি কি আমাকে দয়া করে শহরের মানচিত্রটি দিতে পারেন?',
+                a1: 'Ja, bitte sehr. Hier ist er.', a1_bn: 'হাঁ, অবশ্যই। এই যে এটি।',
+                q2: 'Darf ich bitte den Stadtplan ansehen?', q2_bn: 'আমি কি দয়া করে মানচিত্রটি দেখতে পারি?',
+                a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
+            { id: 12, article: 'Das', word: 'Das Buch', icon: '📕', bn: 'বই',
+                q1: 'Können Sie mir bitte das Buch geben?', q1_bn: 'আপনি কি আমাকে দয়া করে বইটি দিতে পারেন?',
+                a1: 'Ja, natürlich. Bitte.', a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
+                q2: 'Darf ich bitte dieses Buch lesen?', q2_bn: 'আমি কি দয়া করে এই বইটি পড়তে পারি?',
+                a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
             { id: 13, article: 'Das', word: 'Das Fahrrad', icon: '🚲', bn: 'সাইকেল',
-                q1: 'Können Sie mir bitte Ihr Fahrrad geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে আপনার সাইকেলটি দিতে পারেন?', a1: 'Ja, natürlich. Kein Problem.',
-                a1_bn: 'হাঁ, অবশ্যই। কোনো সমস্যা নেই।',
-                q2: 'Darf ich bitte heute Ihr Fahrrad benutzen?',
-                q2_bn: 'আমি কি দয়া করে আপনার সাইকেলটি ব্যবহার করতে পারি?', a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
+                q1: 'Können Sie mir bitte Ihr Fahrrad geben?', q1_bn: 'আপনি কি আমাকে দয়া করে আপনার সাইকেলটি দিতে পারেন?',
+                a1: 'Ja, natürlich. Kein Problem.', a1_bn: 'হাঁ, অবশ্যই। কোনো সমস্যা নেই।',
+                q2: 'Darf ich bitte heute Ihr Fahrrad benutzen?', q2_bn: 'আমি কি দয়া করে আপনার সাইকেলটি ব্যবহার করতে পারি?',
+                a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
             { id: 14, article: 'Der', word: 'Der Apfel', icon: '🍎', bn: 'আপেল',
                 q1: 'Können Sie mir bitte den Apfel geben?', q1_bn: 'আপনি কি আমাকে দয়া করে আপেলটি দিতে পারেন?',
                 a1: 'Ja, gerne. Hier bitte.', a1_bn: 'হাঁ, সানন্দে। এই নিন।',
-                q2: 'Darf ich bitte einen Apfel essen?', q2_bn: 'আমি কি দয়া করে একটি আপেল খেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
+                q2: 'Darf ich bitte einen Apfel essen?', q2_bn: 'আমি কি দয়া করে একটি আপেল খেতে পারি?',
+                a2: 'Ja, natürlich.', a2_bn: 'হাঁ, অবশ্যই।' },
             { id: 15, article: 'Der', word: 'Der Bleistift', icon: '✏️', bn: 'পেন্সিল',
                 q1: 'Können Sie mir bitte einen Bleistift geben?',
                 q1_bn: 'আপনি কি আমাকে দয়া করে একটি পেন্সিল দিতে পারেন?', a1: 'Ja, bitte sehr.',
@@ -973,13 +1030,13 @@
             { id: 30, article: 'Die', word: 'Die Pizza', icon: '🍕', bn: 'পিৎজা',
                 q1: 'Können Sie mir bitte eine Pizza bringen?', q1_bn: 'আপনি কি আমাকে দয়া করে একটি পিৎজা এনে দিতে পারেন?',
                 a1: 'Ja, gerne. Kommt sofort.', a1_bn: 'হাঁ, সানন্দে। এখনই আনছি।',
-                q2: 'Möchten Sie mir bitte eine Pizza reservieren?',
-                q2_bn: 'আপনি কি দয়া করে আমার জন্য একটি পিৎজা রাখতে পারেন?', a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
+                q2: 'Möchten Sie mir bitte eine Pizza reservieren?', q2_bn: 'আপনি কি দয়া করে আমার জন্য একটি পিৎজা রাখতে পারেন?',
+                a2: 'Ja, gerne.', a2_bn: 'হাঁ, সানন্দে।' },
             { id: 31, article: 'Der', word: 'Der Salat', icon: '🥗', bn: 'সালাদ',
                 q1: 'Können Sie mir bitte den Salat geben?', q1_bn: 'আপনি কি আমাকে দয়া করে সালাদটি দিতে পারেন?',
                 a1: 'Ja, bitte sehr.', a1_bn: 'হাঁ, এই যে নিন।',
-                q2: 'Darf ich bitte etwas Salat haben?', q2_bn: 'আমি কি দয়া করে কিছু সালাদ পেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
+                q2: 'Darf ich bitte etwas Salat haben?', q2_bn: 'আমি কি দয়া করে কিছু সালাদ পেতে পারি?',
+                a2: 'Ja, natürlich.', a2_bn: 'হাঁ, অবশ্যই।' },
             { id: 32, article: 'Die', word: 'Die Nudeln', icon: '🍝', bn: 'নুডলস',
                 q1: 'Können Sie bitte die Nudeln kochen?', q1_bn: 'আপনি কি দয়া করে নুডলস রান্না করতে পারেন?',
                 a1: 'Ja, natürlich.', a1_bn: 'হাঁ, অবশ্যই।',
@@ -1434,31 +1491,6 @@
                 a1: 'Ja, gerne.', a1_bn: 'হাঁ, সানন্দে।',
                 q2: 'Darf ich bitte die Suppe essen?', q2_bn: 'আমি কি দয়া করে স্যুপটি খেতে পারি?', a2: 'Ja, gerne.',
                 a2_bn: 'হাঁ, সানন্দে।' },
-            { id: 115, article: 'Das', word: 'Das Brot', icon: '🍞', bn: 'রুটি', q1: 'Können Sie mir bitte das Brot geben?',
-                q1_bn: 'আপনি কি আমাকে দয়া করে রুটিটি দিতে পারেন?', a1: 'Ja, bitte sehr.',
-                a1_bn: 'হাঁ, এই যে নিন।',
-                q2: 'Darf ich bitte etwas Brot haben?', q2_bn: 'আমি কি দয়া করে কিছু রুটি পেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
-            { id: 116, article: 'Der', word: 'Der Apfel', icon: '🍎', bn: 'আপেল',
-                q1: 'Können Sie mir bitte einen Apfel geben?', q1_bn: 'আপনি কি আমাকে দয়া করে একটি আপেল দিতে পারেন?',
-                a1: 'Ja, gerne. Hier bitte.', a1_bn: 'হাঁ, সানন্দে। এই নিন।',
-                q2: 'Darf ich bitte einen Apfel essen?', q2_bn: 'আমি কি দয়া করে একটি আপেল খেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' },
-            { id: 117, article: 'Die', word: 'Die Banane', icon: '🍌', bn: 'কলা',
-                q1: 'Können Sie mir bitte eine Banane geben?', q1_bn: 'আপনি কি আমাকে দয়া করে একটি কলা দিতে পারেন?',
-                a1: 'Ja, natürlich. Hier bitte.', a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
-                q2: 'Darf ich bitte eine Banane essen?', q2_bn: 'আমি কি দয়া করে একটি কলা খেতে পারি?', a2: 'Ja, gerne.',
-                a2_bn: 'হাঁ, সানন্দে।' },
-            { id: 118, article: 'Die', word: 'Die Orange', icon: '🍊', bn: 'কমলা',
-                q1: 'Können Sie mir bitte die Orange geben?', q1_bn: 'আপনি কি আমাকে দয়া করে কমলাটি দিতে পারেন?',
-                a1: 'Ja, gerne. Bitte sehr.', a1_bn: 'হাঁ, সানন্দে। এই যে নিন।',
-                q2: 'Darf ich bitte die Orange essen?', q2_bn: 'আমি কি দয়া করে কমলাটি খেতে পারি?', a2: 'Ja, natürlich.',
-                a2_bn: 'হাঁ, অবশ্যই।' }
-        ];
-
-        // ---- Alphabet ----
-        const ALPHA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-            'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'Ü', 'ß'
         ];
 
         // ================================================================
@@ -1466,10 +1498,15 @@
         // ================================================================
         let ttsSpeed = 1.0;
         let t3Filter = 'all';
+        let t2Sort = 'az';
+        let t3Sort = 'az';
         let qScore = 0,
             qTotal = 0;
         let quizQuestions = [];
         let quizIndex = 0;
+        let quizAdvanceTimer = null;
+        let quizTouchStartX = 0;
+        let pageZoom = 100;
 
         // ================================================================
         // UTILITY
@@ -1497,12 +1534,14 @@
         }
 
         function setTtsSpeed(s) {
-            ttsSpeed = s;
-            document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active-speed'));
-            const id = 'sp-' + (s * 10).toFixed(0);
-            const btn = document.getElementById(id);
-            if (btn) btn.classList.add('active-speed');
-            showToast('গতি: ' + s.toFixed(1) + 'x');
+            ttsSpeed = Number(s);
+            showToast('গতি: ' + ttsSpeed.toFixed(1) + 'x');
+        }
+
+        function changePageZoom(amount) {
+            pageZoom = Math.min(120, Math.max(80, pageZoom + amount));
+            document.body.style.zoom = pageZoom + '%';
+            document.getElementById('page-zoom-label').textContent = pageZoom + '%';
         }
 
         function toggleTheme() {
@@ -1522,15 +1561,15 @@
                 if (t === tab) {
                     v.classList.remove('hidden');
                     if (b) b.className =
-                        'tab-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5';
+                        'tab-btn active px-3.5 py-1.5 rounded-xl text-base font-bold transition-all flex items-center gap-1.5';
                     if (m) m.className =
-                        'flex flex-col items-center gap-0.5 text-sky-600 dark:text-amber-400 text-[10px] font-bold';
+                        'flex flex-col items-center gap-0.5 text-sky-600 dark:text-amber-400 text-[12px] font-bold';
                 } else {
                     v.classList.add('hidden');
                     if (b) b.className =
-                        'tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5';
+                        'tab-btn px-3.5 py-1.5 rounded-xl text-base font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5';
                     if (m) m.className =
-                        'flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400 text-[10px] font-bold';
+                        'flex flex-col items-center gap-0.5 text-slate-500 dark:text-slate-400 text-[12px] font-bold';
                 }
             });
             if (tab === 't2') renderT2();
@@ -1563,7 +1602,7 @@
             const out = document.getElementById('v-output');
             out.innerHTML = lines.map((l, i) =>
                 `<div class="p-2 bg-slate-900/80 rounded-xl border border-slate-800 flex items-start justify-between gap-2">
-                    <div><span class="text-amber-400 font-bold mr-1.5">${i+1}.</span><span class="font-bold text-white">${l.de}</span><p class="text-[11px] text-slate-400 mt-0.5">${l.bn}</p></div>
+                    <div><span class="text-amber-400 font-bold mr-1.5">${i+1}.</span><span class="font-bold text-white">${l.de}</span><p class="text-[13px] text-slate-400 mt-0.5">${l.bn}</p></div>
                     <button onclick="speakText('${l.de.replace(/'/g,"\\'")}')" class="text-amber-400 hover:text-amber-300 p-1 shrink-0"><i class="fa-solid fa-volume-high"></i></button>
                 </div>`
             ).join('');
@@ -1597,52 +1636,61 @@
             speakText(txt);
         }
 
-        function renderAlpha() {
-            const grid = document.getElementById('alpha-grid');
-            grid.innerHTML = ALPHA.map(ch =>
-                `<button onclick="speakText('${ch}')" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-400 hover:text-slate-950 font-extrabold text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center justify-center">${ch}</button>`
-            ).join('');
-        }
-
         // ================================================================
         // TEIL 2 – Information Fragen und Antworten (mit Bangla)
         // ================================================================
+        function sortEntries(data, sortMode) {
+            const sorted = [...data];
+            if (sortMode === 'random') return sorted.sort(() => Math.random() - 0.5);
+            return sorted.sort((a, b) => {
+                const result = a.word.localeCompare(b.word, 'de', { sensitivity: 'base' });
+                return sortMode === 'za' ? -result : result;
+            });
+        }
+
         function renderT2() {
             const filter = document.getElementById('t2-filter').value;
+            const search = document.getElementById('t2-search').value.trim().toLocaleLowerCase();
+            t2Sort = document.getElementById('t2-sort').value;
             const grid = document.getElementById('t2-grid');
-            const data = filter === 'all' ? T2_DATA : T2_DATA.filter(d => d.theme === filter);
+            const filtered = T2_DATA.filter(d => {
+                const matchesTheme = filter === 'all' || d.theme === filter;
+                const searchable = [d.word, d.theme, d.bn, d.q1, d.q1_bn, d.a1, d.a1_bn, d.q2, d.q2_bn, d.a2, d.a2_bn].join(' ').toLocaleLowerCase();
+                return matchesTheme && (!search || searchable.includes(search));
+            });
+            const data = sortEntries(filtered, t2Sort);
             document.getElementById('t2-count').textContent = data.length;
             grid.innerHTML = data.map(d =>
                 `<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm card-hover space-y-3">
                     <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
-                        <div class="flex items-center gap-2"><span class="text-xs font-black px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${d.theme}</span><h3 class="text-sm font-extrabold text-slate-900 dark:text-white">${d.word}</h3></div>
-                        <span class="text-[10px] text-slate-400">#${d.id}</span>
+                        <div class="flex items-center gap-2"><span class="text-base font-black px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${d.theme}</span><h3 class="text-lg font-extrabold text-slate-900 dark:text-white">${d.word}</h3></div>
+                        <span class="text-[12px] text-slate-400">#${d.id}</span>
                     </div>
 
                     <!-- Frage 1 + Bangla -->
                     <div class="p-2.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-sky-600 dark:text-amber-400"><span>Frage 1</span><button onclick="speakText('${d.q1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-slate-900 dark:text-white">${d.q1}</p>
-                        <p class="text-[11px] text-slate-500 font-medium">${d.q1_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-sky-600 dark:text-amber-400"><span>Frage 1</span><button onclick="speakText('${d.q1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-slate-900 dark:text-white">${d.q1}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-slate-500 font-medium">${d.q1_bn}</p>
                     </div>
                     <!-- Antwort 1 + Bangla -->
                     <div class="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-900/50 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-emerald-700 dark:text-emerald-400"><span>Antwort 1</span><button onclick="speakText('${d.a1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-emerald-950 dark:text-emerald-200">${d.a1}</p>
-                        <p class="text-[11px] text-emerald-700 dark:text-emerald-400/80 font-medium">${d.a1_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-emerald-700 dark:text-emerald-400"><span>Antwort 1</span><button onclick="speakText('${d.a1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-emerald-950 dark:text-emerald-200">${d.a1}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-emerald-700 dark:text-emerald-400/80 font-medium">${d.a1_bn}</p>
                     </div>
 
                     <!-- Frage 2 + Bangla -->
                     <div class="p-2.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-sky-600 dark:text-amber-400"><span>Frage 2</span><button onclick="speakText('${d.q2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-slate-900 dark:text-white">${d.q2}</p>
-                        <p class="text-[11px] text-slate-500 font-medium">${d.q2_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-sky-600 dark:text-amber-400"><span>Frage 2</span><button onclick="speakText('${d.q2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-slate-900 dark:text-white">${d.q2}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-slate-500 font-medium">${d.q2_bn}</p>
                     </div>
                     <!-- Antwort 2 + Bangla -->
                     <div class="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-900/50 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-emerald-700 dark:text-emerald-400"><span>Antwort 2</span><button onclick="speakText('${d.a2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-emerald-950 dark:text-emerald-200">${d.a2}</p>
-                        <p class="text-[11px] text-emerald-700 dark:text-emerald-400/80 font-medium">${d.a2_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-emerald-700 dark:text-emerald-400"><span>Antwort 2</span><button onclick="speakText('${d.a2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-emerald-950 dark:text-emerald-200">${d.a2}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-emerald-700 dark:text-emerald-400/80 font-medium">${d.a2_bn}</p>
                     </div>
                 </div>`
             ).join('');
@@ -1654,12 +1702,12 @@
         function filterT3(art) {
             t3Filter = art;
             document.querySelectorAll('.art-btn').forEach(b => b.className =
-                'art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                'art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
                 );
             const id = 't3-' + art.toLowerCase();
             const btn = document.getElementById(id);
             if (btn) btn.className =
-                'art-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 shadow-sm';
+                'art-btn px-3 py-1.5 rounded-xl text-base font-bold bg-amber-500 text-slate-950 shadow-sm';
             renderT3();
         }
 
@@ -1670,34 +1718,47 @@
         }
 
         function renderT3() {
+            const search = document.getElementById('t3-search').value.trim().toLocaleLowerCase();
+            t3Sort = document.getElementById('t3-sort').value;
             const grid = document.getElementById('t3-grid');
-            const data = t3Filter === 'all' ? T3_DATA : T3_DATA.filter(d => d.article === t3Filter);
+            const filtered = T3_DATA.filter(d => {
+                const matchesArticle = t3Filter === 'all' || d.article === t3Filter;
+                const searchable = [d.word, d.article, d.bn, d.q1, d.q1_bn, d.a1, d.a1_bn, d.q2, d.q2_bn, d.a2, d.a2_bn].join(' ').toLocaleLowerCase();
+                return matchesArticle && (!search || searchable.includes(search));
+            });
+            const uniqueWords = new Set();
+            const uniqueFiltered = filtered.filter(d => {
+                if (uniqueWords.has(d.word)) return false;
+                uniqueWords.add(d.word);
+                return true;
+            });
+            const data = sortEntries(uniqueFiltered, t3Sort);
             document.getElementById('t3-count').textContent = data.length;
             grid.innerHTML = data.map(d =>
                 `<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm card-hover space-y-3">
                     <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-2">
-                        <span class="text-3xl">${d.icon}</span>
-                        <div><span class="text-[10px] font-black px-2 py-0.5 rounded-full ${getArtClass(d.article)}">${d.article}</span><h3 class="text-sm font-extrabold text-slate-900 dark:text-white mt-0.5">${d.word}</h3></div>
+                        <span class="t3-card-icon">${d.icon}</span>
+                        <div><span class="text-[12px] font-black px-2 py-0.5 rounded-full ${getArtClass(d.article)}">${d.article}</span><h3 class="text-lg font-extrabold text-slate-900 dark:text-white mt-0.5">${d.word}</h3></div>
                     </div>
                     <div class="p-2.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-sky-600 dark:text-amber-400"><span>Bitte 1</span><button onclick="speakText('${d.q1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-slate-900 dark:text-white">${d.q1}</p>
-                        <p class="text-[11px] text-slate-500">${d.q1_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-sky-600 dark:text-amber-400"><span>Bitte 1</span><button onclick="speakText('${d.q1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-slate-900 dark:text-white">${d.q1}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-slate-500">${d.q1_bn}</p>
                     </div>
                     <div class="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-900/50 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-emerald-700 dark:text-emerald-400"><span>Reaktion 1</span><button onclick="speakText('${d.a1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-emerald-950 dark:text-emerald-200">${d.a1}</p>
-                        <p class="text-[11px] text-emerald-700 dark:text-emerald-400/80">${d.a1_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-emerald-700 dark:text-emerald-400"><span>Reaktion 1</span><button onclick="speakText('${d.a1.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-emerald-950 dark:text-emerald-200">${d.a1}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-emerald-700 dark:text-emerald-400/80">${d.a1_bn}</p>
                     </div>
                     <div class="p-2.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-sky-600 dark:text-amber-400"><span>Bitte 2</span><button onclick="speakText('${d.q2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-slate-900 dark:text-white">${d.q2}</p>
-                        <p class="text-[11px] text-slate-500">${d.q2_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-sky-600 dark:text-amber-400"><span>Bitte 2</span><button onclick="speakText('${d.q2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-slate-900 dark:text-white">${d.q2}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-slate-500">${d.q2_bn}</p>
                     </div>
                     <div class="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-900/50 space-y-1">
-                        <div class="flex items-center justify-between text-[10px] font-bold text-emerald-700 dark:text-emerald-400"><span>Reaktion 2</span><button onclick="speakText('${d.a2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
-                        <p class="text-xs font-bold text-emerald-950 dark:text-emerald-200">${d.a2}</p>
-                        <p class="text-[11px] text-emerald-700 dark:text-emerald-400/80">${d.a2_bn}</p>
+                        <div class="flex items-center justify-between text-[12px] font-bold text-emerald-700 dark:text-emerald-400"><span>Reaktion 2</span><button onclick="speakText('${d.a2.replace(/'/g,"\\'")}')" class="hover:underline"><i class="fa-solid fa-volume-high"></i></button></div>
+                        <p class="text-base font-bold text-emerald-950 dark:text-emerald-200">${d.a2}</p>
+                        <p class="bangla-t2-t3 text-[13px] text-emerald-700 dark:text-emerald-400/80">${d.a2_bn}</p>
                     </div>
                 </div>`
             ).join('');
@@ -1707,6 +1768,7 @@
         // QUIZ
         // ================================================================
         function resetQuiz() {
+            clearTimeout(quizAdvanceTimer);
             qScore = 0;
             qTotal = 0;
             quizIndex = 0;
@@ -1718,8 +1780,15 @@
             const filter = document.getElementById('quiz-filter').value;
             const count = parseInt(document.getElementById('quiz-count').value);
             let pool = [];
+            const uniqueT3 = [];
+            const seenT3Words = new Set();
+            T3_DATA.forEach(item => {
+                if (seenT3Words.has(item.word)) return;
+                seenT3Words.add(item.word);
+                uniqueT3.push(item);
+            });
             if (filter === 'all' || filter === 't2') pool = pool.concat(T2_DATA.map(d => ({ type: 't2', data: d })));
-            if (filter === 'all' || filter === 't3') pool = pool.concat(T3_DATA.map(d => ({ type: 't3', data: d })));
+            if (filter === 'all' || filter === 't3') pool = pool.concat(uniqueT3.map(d => ({ type: 't3', data: d })));
             if (count > 0 && count < pool.length) {
                 pool = pool.sort(() => Math.random() - 0.5).slice(0, count);
             } else {
@@ -1736,6 +1805,9 @@
                 document.getElementById('q-prompt').textContent = '';
                 document.getElementById('q-opts').innerHTML = '';
                 document.getElementById('q-exp').classList.add('hidden');
+                document.getElementById('q-final-result').classList.add('hidden');
+                document.getElementById('q-final-message').classList.add('hidden');
+                updateQuizNavigation();
                 return;
             }
             showQuestion();
@@ -1746,18 +1818,28 @@
                 document.getElementById('q-badge').textContent = '✅ শেষ!';
                 document.getElementById('q-icon').textContent = '🎉';
                 document.getElementById('q-title').textContent = 'আপনি সব প্রশ্নের উত্তর দিয়েছেন!';
-                document.getElementById('q-prompt').textContent = 'স্কোর: ' + qScore + ' / ' + qTotal;
+                const percentage = qTotal ? Math.round((qScore / qTotal) * 100) : 0;
+                document.getElementById('q-prompt').textContent = 'ফলাফল';
+                document.getElementById('q-final-result').textContent = 'স্কোর: ' + qScore + ' / ' + qTotal + ' · ' + percentage + '%';
+                document.getElementById('q-final-result').classList.remove('hidden');
+                const finalMessage = document.getElementById('q-final-message');
+                finalMessage.textContent = percentage > 90 ? 'Great job!' : percentage < 90 ? 'Try again to improve.' : '90% achieved. Keep practicing!';
+                finalMessage.className = percentage > 90 ? 'text-base font-bold text-emerald-500' : 'text-base font-bold text-amber-500';
                 document.getElementById('q-opts').innerHTML = '';
                 document.getElementById('q-exp').classList.add('hidden');
                 document.getElementById('q-progress').textContent = quizIndex + ' / ' + qTotal;
+                updateQuizNavigation();
                 return;
             }
             const item = quizQuestions[quizIndex];
             const box = document.getElementById('q-opts');
             const exp = document.getElementById('q-exp');
             exp.classList.add('hidden');
+            document.getElementById('q-final-result').classList.add('hidden');
+            document.getElementById('q-final-message').classList.add('hidden');
             box.innerHTML = '';
             document.getElementById('q-progress').textContent = (quizIndex + 1) + ' / ' + qTotal;
+            updateQuizNavigation();
 
             if (item.type === 't3') {
                 const d = item.data;
@@ -1776,10 +1858,11 @@
 
                 opts.forEach((o, i) => {
                     const btn = document.createElement('button');
+                    btn.dataset.correct = String(o.correct);
                     btn.className =
-                        'w-full text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-semibold transition flex items-center justify-between';
+                        'w-full text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-base sm:text-lg text-slate-800 dark:text-slate-200 font-semibold transition flex items-center justify-between';
                     btn.innerHTML =
-                        `<span>${String.fromCharCode(65+i)}. ${o.text}</span> <i class="fa-solid fa-chevron-right text-slate-400 text-[10px]"></i>`;
+                        `<span>${String.fromCharCode(65+i)}. ${o.text}</span> <i class="fa-solid fa-chevron-right text-slate-400 text-[12px]"></i>`;
                     btn.onclick = () => answerQuiz(o.correct, btn,
                         `সঠিক: "${correct}". Goethe A1-এ "Können Sie bitte..." বা "Darf ich..." দিয়ে অনুরোধ করা হয়।`
                         );
@@ -1802,16 +1885,34 @@
 
                 opts.forEach((o, i) => {
                     const btn = document.createElement('button');
+                    btn.dataset.correct = String(o.correct);
                     btn.className =
-                        'w-full text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-semibold transition flex items-center justify-between';
+                        'w-full text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-base sm:text-lg text-slate-800 dark:text-slate-200 font-semibold transition flex items-center justify-between';
                     btn.innerHTML =
-                        `<span>${String.fromCharCode(65+i)}. ${o.text}</span> <i class="fa-solid fa-chevron-right text-slate-400 text-[10px]"></i>`;
+                        `<span>${String.fromCharCode(65+i)}. ${o.text}</span> <i class="fa-solid fa-chevron-right text-slate-400 text-[12px]"></i>`;
                     btn.onclick = () => answerQuiz(o.correct, btn,
-                        `সঠিক: "${correct}". W-Frage-এ Wo/Was/Wie + Verb + Subject হয়।`
+                        `সঠিক: "${correct}". W-Frage-এ Wo/Was/Wie... + Verb + Subject ...হয়।`
                         );
                     box.appendChild(btn);
                 });
             }
+        }
+
+        function updateQuizNavigation() {
+            const previous = document.getElementById('q-prev');
+            const next = document.getElementById('q-next');
+            if (!previous || !next) return;
+            previous.disabled = quizIndex <= 0 || quizQuestions.length === 0;
+            next.disabled = quizIndex >= quizQuestions.length || quizQuestions.length === 0;
+        }
+
+        function navigateQuiz(direction) {
+            if (!quizQuestions.length) return;
+            clearTimeout(quizAdvanceTimer);
+            const nextIndex = quizIndex + direction;
+            if (nextIndex < 0 || nextIndex >= quizQuestions.length) return;
+            quizIndex = nextIndex;
+            showQuestion();
         }
 
         function answerQuiz(isCorrect, btn, explain) {
@@ -1821,15 +1922,21 @@
             const expText = document.getElementById('q-exp-text');
             if (isCorrect) { qScore++;
                 btn.className =
-                    'w-full text-left p-3.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-500 text-emerald-900 dark:text-emerald-200 text-xs sm:text-sm font-bold shadow-sm answered';
+                    'w-full text-left p-3.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-500 text-emerald-900 dark:text-emerald-200 text-base sm:text-lg font-bold shadow-sm answered';
             } else {
                 btn.className =
-                    'w-full text-left p-3.5 rounded-xl bg-red-100 dark:bg-red-950/80 border border-red-500 text-red-900 dark:text-red-200 text-xs sm:text-sm font-bold shadow-sm answered';
+                    'w-full text-left p-3.5 rounded-xl bg-red-100 dark:bg-red-950/80 border border-red-500 text-red-900 dark:text-red-200 text-base sm:text-lg font-bold shadow-sm answered';
+                const correctButton = document.querySelector('#q-opts button[data-correct="true"]');
+                if (correctButton) {
+                    correctButton.className =
+                        'w-full text-left p-3.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-500 text-emerald-900 dark:text-emerald-200 text-base sm:text-lg font-bold shadow-sm answered';
+                }
             }
             expText.textContent = (isCorrect ? '✅ সঠিক! ' : '❌ ভুল। ') + explain;
             exp.classList.remove('hidden');
             document.getElementById('q-score').textContent = qScore + ' / ' + qTotal;
-            setTimeout(() => {
+            clearTimeout(quizAdvanceTimer);
+            quizAdvanceTimer = setTimeout(() => {
                 quizIndex++;
                 showQuestion();
             }, 1800);
@@ -1841,16 +1948,34 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('theme') === 'light') document.documentElement.classList.remove('dark');
 
-            renderAlpha();
             renderVorstellen();
             renderT2();
             renderT3();
             resetQuiz();
 
-            document.getElementById('sp-10').classList.add('active-speed');
-
             document.getElementById('quiz-filter').addEventListener('change', resetQuiz);
             document.getElementById('quiz-count').addEventListener('change', resetQuiz);
+
+            const quizView = document.getElementById('view-quiz');
+            quizView.addEventListener('touchstart', event => {
+                quizTouchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+            quizView.addEventListener('touchend', event => {
+                const distance = event.changedTouches[0].screenX - quizTouchStartX;
+                if (Math.abs(distance) < 50 || quizView.classList.contains('hidden')) return;
+                navigateQuiz(distance < 0 ? 1 : -1);
+            }, { passive: true });
+            document.addEventListener('keydown', event => {
+                if (quizView.classList.contains('hidden') || ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    navigateQuiz(-1);
+                }
+                if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    navigateQuiz(1);
+                }
+            });
         });
     </script>
 
