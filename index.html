@@ -198,7 +198,7 @@
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <div class="flex items-center gap-2"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">Teil 1</span><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Sich vorstellen</h2></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400">নিজের পরিচয় দিন · বানান ও সংখ্যা অনুশীলন করুন</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400">নিজের পরিচয় দিন</p>
                 </div>
                 <button onclick="fillSample()" class="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i>নমুনা পূরণ</button>
             </div>
@@ -206,7 +206,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <!-- Form -->
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2"><span>আপনার তথ্য</span><span class="text-[10px] font-normal text-slate-500">Formular</span></h3>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2"><span>আপনার তথ্য পূরণ করুন</span><span class="text-[10px] font-normal text-slate-500">Formular</span></h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div><label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">নাম (Name)</label><input id="v-name" value="Shakil Ahmed" oninput="renderVorstellen()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
                         <div><label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">বয়স (Alter)</label><input id="v-age" value="26" oninput="renderVorstellen()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
@@ -1573,11 +1573,11 @@
         }
 
         function fillSample() {
-            document.getElementById('v-name').value = 'Shakil Ahmed';
+            document.getElementById('v-name').value = 'Shakil Shawon';
             document.getElementById('v-age').value = '26';
             document.getElementById('v-country').value = 'Bangladesch';
             document.getElementById('v-city').value = 'Dhaka';
-            document.getElementById('v-lang').value = 'Bengali, Englisch und etwas Deutsch';
+            document.getElementById('v-lang').value = 'Bengalisch, Englisch und ein bisschen Deutsch';
             document.getElementById('v-job').value = 'Student';
             document.getElementById('v-hobby').value = 'Fußball spielen und Reisen';
             renderVorstellen();
@@ -1593,7 +1593,7 @@
             const job = document.getElementById('v-job').value.trim() || 'Student';
             const hobby = document.getElementById('v-hobby').value.trim() || 'Musik hören';
             const txt =
-                `Hallo, ich stelle mich vor. Ich heiße ${name}. Ich bin ${age} Jahre alt. Ich komme aus ${country}. Ich wohne in ${city}. Ich spreche ${lang}. Ich bin ${job} von Beruf. Meine Hobbys sind ${hobby}. Danke!`;
+                `Hallo, ich stelle mich vor. Ich heiße ${name}. Ich bin ${age} Jahre alt. Ich komme aus ${country}. Ich wohne in ${city}. Ich spreche ${lang}. Ich bin ${job}. Meine Hobbys sind ${hobby}. Danke!`;
             speakText(txt);
         }
 
@@ -1787,10 +1787,10 @@
                 });
             } else {
                 const d = item.data;
-                document.getElementById('q-badge').textContent = 'Teil 2 · W-Frage';
+                document.getElementById('q-badge').textContent = 'Teil 2 · Information Fragen';
                 document.getElementById('q-icon').textContent = '❓';
                 document.getElementById('q-title').textContent = `${d.word} (${d.theme})`;
-                document.getElementById('q-prompt').textContent = 'সঠিক W-Frage (প্রশ্ন) বেছে নিন';
+                document.getElementById('q-prompt').textContent = 'সঠিক প্রশ্ন বেছে নিন';
 
                 const correct = d.q1;
                 const opts = [
