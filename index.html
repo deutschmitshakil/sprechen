@@ -211,11 +211,13 @@
                         <option value="1.5">1.5x</option>
                     </select>
                     <!-- Page Zoom -->
-                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-                        <button onclick="changePageZoom(-10)" aria-label="Zoom out" title="Zoom out" class="w-7 h-8 flex items-center justify-center text-base font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition">−</button>
-                        <span id="page-zoom-label" class="min-w-11 text-center text-[12px] font-bold text-slate-700 dark:text-slate-200">100%</span>
-                        <button onclick="changePageZoom(10)" aria-label="Zoom in" title="Zoom in" class="w-7 h-8 flex items-center justify-center text-base font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition">+</button>
-                    </div>
+                    <select id="page-zoom" onchange="changePageZoom(this.value)" aria-label="Page zoom" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-1.5 text-[12px] font-bold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <option value="60">60%</option>
+                        <option value="80">80%</option>
+                        <option value="100" selected>100%</option>
+                        <option value="120">120%</option>
+                        <option value="140">140%</option>
+                    </select>
                     <!-- Theme -->
                     <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center transition">
                         <i class="fa-solid fa-moon dark:hidden"></i>
@@ -326,18 +328,14 @@
                 </div>
 
                 <!-- Quiz Controls -->
-                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-3 items-center justify-between">
-                    <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <label class="text-base font-bold text-slate-700 dark:text-slate-300">ফিল্টার:</label>
-                        <select id="quiz-filter" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-wrap items-center justify-center gap-3">
+                    <select id="quiz-filter" aria-label="Quiz filter" title="Quiz filter" class="w-full sm:w-auto bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
                             <option value="all">সব</option>
                             <option value="t2">Teil 2</option>
                             <option value="t3">Teil 3</option>
-                        </select>
-                    </div>
-                    <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <label class="text-base font-bold text-slate-700 dark:text-slate-300">প্রশ্ন সংখ্যা:</label>
-                        <select id="quiz-count" class="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                    </select>
+                    <input id="quiz-search" type="search" aria-label="Search quiz" placeholder="কুইজ খুঁজুন" class="w-full sm:w-52 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-medium text-slate-800 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400" />
+                    <select id="quiz-count" aria-label="Number of quiz questions" title="Number of quiz questions" class="w-full sm:w-auto bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-base font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
                             <option value="5">৫</option>
                             <option value="10" selected>১০</option>
                             <option value="15">১৫</option>
@@ -346,9 +344,8 @@
                             <option value="40">৪০</option>
                             <option value="50">৫০</option>
                             <option value="0">সব</option>
-                        </select>
-                        <button onclick="resetQuiz()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-rotate-right"></i> রিসেট</button>
-                    </div>
+                    </select>
+                    <button onclick="resetQuiz()" aria-label="Reset quiz" title="Reset quiz" class="w-10 h-10 inline-flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-rotate-right"></i></button>
                 </div>
 
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-md space-y-5 relative overflow-hidden">
@@ -574,10 +571,6 @@
                 q1_bn: 'আপনি কি পাহাড়ে যেতে পছন্দ করেন?', a1: 'Ja, ich wandere gern.', a1_bn: 'হাঁ, আমি হাইকিং পছন্দ করি।',
                 q2: 'Sind die Berge schön?', q2_bn: 'পাহাড়গুলো কি সুন্দর?', a2: 'Ja, die Berge sind sehr schön.',
                 a2_bn: 'হাঁ, পাহাড়গুলো খুব সুন্দর।' },
-            { id: 43, word: 'Internet', theme: 'Lernen', bn: 'ইন্টারনেট', q1: 'Lernen Sie Deutsch im Internet?',
-                q1_bn: 'আপনি কি ইন্টারনেটে জার্মান শেখেন?', a1: 'Ja, ich mache Online-Übungen.',
-                a1_bn: 'হাঁ, আমি অনলাইন অনুশীলন করি।', q2: 'Ist das Internet schnell?', q2_bn: 'ইন্টারনেট কি দ্রুত?',
-                a2: 'Ja, das Internet ist sehr schnell.', a2_bn: 'হাঁ, ইন্টারনেট খুব দ্রুত।' },
             { id: 44, word: 'Freunde', theme: 'Freizeit', bn: 'বন্ধু', q1: 'Treffen Sie Ihre Freunde am Wochenende?',
                 q1_bn: 'আপনি কি সপ্তাহান্তে বন্ধুদের সাথে দেখা করেন?', a1: 'Ja, wir gehen ins Restaurant.',
                 a1_bn: 'হাঁ, আমরা রেস্তোরাঁয় যাই।', q2: 'Haben Sie viele Freunde?', q2_bn: 'আপনার কি অনেক বন্ধু আছে?',
@@ -594,10 +587,6 @@
                 q1_bn: 'আপনি কি আপেল জুস পান করতে পছন্দ করেন?', a1: 'Ja, er schmeckt sehr gut.',
                 a1_bn: 'হাঁ, এটি খেতে খুব সুস্বাদু।', q2: 'Kaufen Sie Apfelsaft?', q2_bn: 'আপনি কি আপেল জুস কেনেন?',
                 a2: 'Ja, ich kaufe Apfelsaft.', a2_bn: 'হাঁ, আমি আপেল জুস কিনি।' },
-            { id: 48, word: 'Arbeitsplatz', theme: 'Beruf', bn: 'কর্মস্থল', q1: 'Wo ist Ihr Arbeitsplatz?',
-                q1_bn: 'আপনার কর্মস্থল কোথায়?', a1: 'Mein Büro ist im Zentrum.', a1_bn: 'আমার অফিস শহরের কেন্দ্রে।',
-                q2: 'Arbeiten Sie gern am Arbeitsplatz?', q2_bn: 'আপনি কি কর্মস্থলে কাজ করতে পছন্দ করেন?',
-                a2: 'Ja, ich arbeite dort sehr gern.', a2_bn: 'হাঁ, আমি সেখানে কাজ করতে খুব পছন্দ করি।' },
             { id: 49, word: 'Auto', theme: 'Reisen', bn: 'গাড়ি', q1: 'Fahren Sie mit dem Auto?',
                 q1_bn: 'আপনি কি গাড়িতে করে যান?', a1: 'Ja, ich fahre gern Auto.', a1_bn: 'হাঁ, আমি গাড়ি চালাতে পছন্দ করি।',
                 q2: 'Ist Ihr Auto neu?', q2_bn: 'আপনার গাড়িটি কি নতুন?', a2: 'Ja, mein Auto ist neu.',
@@ -634,10 +623,6 @@
                 q1_bn: 'আপনার কাছে কি অনেক সিডি আছে?', a1: 'Ja, ich liebe Musik.', a1_bn: 'হাঁ, আমি গান ভালোবাসি।',
                 q2: 'Kaufen Sie oft CDs?', q2_bn: 'আপনি কি প্রায়ই সিডি কিনেন?', a2: 'Ja, ich kaufe oft CDs.',
                 a2_bn: 'হাঁ, আমি প্রায়ই সিডি কিনি।' },
-            { id: 58, word: 'Kollegen', theme: 'Arbeit', bn: 'সহকর্মী', q1: 'Wie sind Ihre Kollegen?',
-                q1_bn: 'আপনার সহকর্মীরা কেমন?', a1: 'Sie sind sehr nett.', a1_bn: 'তারা খুব আমায়িক।',
-                q2: 'Helfen Ihre Kollegen Ihnen?', q2_bn: 'আপনার সহকর্মীরা কি আপনাকে সাহায্য করেন?',
-                a2: 'Ja, sie helfen mir sehr.', a2_bn: 'হাঁ, তারা আমাকে খুব সাহায্য করেন।' },
             { id: 59, word: 'Lernen', theme: 'Schule', bn: 'শেখা', q1: 'Wo lernen Sie Deutsch?',
                 q1_bn: 'আপনি কোথায় জার্মান শেখেন?', a1: 'Ich lerne an der Uni.', a1_bn: 'আমি বিশ্ববিদ্যালয়ে শিখি।',
                 q2: 'Lernen Sie gern Deutsch?', q2_bn: 'আপনি কি জার্মান শিখতে পছন্দ করেন?',
@@ -675,11 +660,6 @@
                 q1_bn: 'আপনি কি মাছ খেতে পছন্দ করেন?', a1: 'Ja, Fisch ist gesund.', a1_bn: 'হাঁ, মাছ স্বাস্থ্যের জন্য ভালো।',
                 q2: 'Kaufen Sie heute Fisch?', q2_bn: 'আপনি কি আজ মাছ কিনবেন?', a2: 'Ja, ich kaufe heute Fisch.',
                 a2_bn: 'হাঁ, আমি আজ মাছ কিনব।' },
-            { id: 68, word: 'Fleisch', theme: 'Essen', bn: 'মাংস', q1: 'Möchten Sie Fleisch essen?',
-                q1_bn: 'আপনি কি মাংস খেতে চান?', a1: 'Ja, ich esse sehr gern Fleisch.',
-                a1_bn: 'হাঁ, আমি মাংস খুব পছন্দ করে খাই।', q2: 'Kochen Sie gerne Fleisch?',
-                q2_bn: 'আপনি কি মাংস রান্না করতে পছন্দ করেন?', a2: 'Ja, ich koche gern Fleisch.',
-                a2_bn: 'হাঁ, আমি মাংস রান্না করতে পছন্দ করি।' },
             { id: 69, word: 'Flugzeug', theme: 'Reisen', bn: 'বিমান', q1: 'Fliegen Sie mit dem Flugzeug?',
                 q1_bn: 'আপনি কি বিমানে যাচ্ছেন?', a1: 'Ja, nach Berlin.', a1_bn: 'হাঁ, বার্লিনে যাচ্ছি।',
                 q2: 'Ist das Flugzeug schnell?', q2_bn: 'বিমানটি কি দ্রুত?', a2: 'Ja, das Flugzeug ist sehr schnell.',
@@ -717,10 +697,6 @@
                 q1_bn: 'আপনি কি সমুদ্রে যাচ্ছেন?', a1: 'Ja, im Sommer.', a1_bn: 'হাঁ, গ্রীষ্মকালে।',
                 q2: 'Ist das Meer schön?', q2_bn: 'সমুদ্রটি কি সুন্দর?', a2: 'Ja, das Meer ist wunderschön.',
                 a2_bn: 'হাঁ, সমুদ্রটি অত্যন্ত সুন্দর।' },
-            { id: 78, word: 'Sport', theme: 'Freizeit', bn: 'খেলাধুলা', q1: 'Machen Sie Sport?',
-                q1_bn: 'আপনি কি খেলাধুলা করেন?', a1: 'Ja, ich jogge jeden Tag.', a1_bn: 'হাঁ, আমি প্রতিদিন জগিং করি।',
-                q2: 'Treiben Sie am Wochenende Sport?', q2_bn: 'আপনি কি সপ্তাহান্তে খেলাধুলা করেন?',
-                a2: 'Ja, ich mache am Wochenende Sport.', a2_bn: 'হাঁ, আমি সপ্তাহান্তে খেলাধুলা করি।' },
             { id: 79, word: 'Aufgaben', theme: 'Arbeit', bn: 'কাজ', q1: 'Was sind Ihre Aufgaben?',
                 q1_bn: 'আপনার কাজগুলো কী কী?', a1: 'Ich schreibe Berichte.', a1_bn: 'আমি রিপোর্ট লিখি।',
                 q2: 'Sind die Aufgaben interessant?', q2_bn: 'কাজগুলো কি আকর্ষণীয়?', a2: 'Ja, die Aufgaben sind sehr gut.',
@@ -791,10 +767,6 @@
                 q1_bn: 'আপনার কি আজ কোনো অ্যাপয়েন্টমেন্ট আছে?', a1: 'Ja, um zehn Uhr.', a1_bn: 'হাঁ, সকাল দশটায়।',
                 q2: 'Ist der Termin wichtig?', q2_bn: 'অ্যাপয়েন্টমেন্টটি কি গুরুত্বপূর্ণ?',
                 a2: 'Ja, der Termin ist wichtig.', a2_bn: 'হাঁ, অ্যাপয়েন্টমেন্টটি গুরুত্বপূর্ণ।' },
-            { id: 96, word: 'Pause', theme: 'Arbeit', bn: 'বিরতি', q1: 'Was machen Sie in der Pause?',
-                q1_bn: 'বিরতির সময় আপনি কী করেন?', a1: 'Ich esse ein Brötchen.', a1_bn: 'আমি একটি ছোট রুটি খাই।',
-                q2: 'Machen Sie jetzt Pause?', q2_bn: 'আপনি কি এখন বিরতি নিচ্ছেন?', a2: 'Ja, ich mache jetzt Pause.',
-                a2_bn: 'হাঁ, আমি এখন বিরতি নিচ্ছি।' },
             { id: 97, word: 'Größe', theme: 'Kleidung', bn: 'সাইজ', q1: 'Welche Größe brauchen Sie?',
                 q1_bn: 'আপনার কোন সাইজের পোশাক প্রয়োজন?', a1: 'Ich brauche Größe XL.', a1_bn: 'আমার এক্সএল সাইজ প্রয়োজন।',
                 q2: 'Ist das die richtige Größe?', q2_bn: 'এটি কি সঠিক মাপ?', a2: 'Ja, das ist die richtige Größe.',
@@ -811,10 +783,6 @@
                 q1_bn: 'আপনার প্রতিবেশীরা কি আমায়িক?', a1: 'Ja, sie helfen viel.', a1_bn: 'হাঁ, তারা অনেক সাহায্য করেন।',
                 q2: 'Wohnen Ihre Nachbarn hier?', q2_bn: 'আপনার প্রতিবেশীরা কি এখানে থাকেন?',
                 a2: 'Ja, sie wohnen hier.', a2_bn: 'হাঁ, তারা এখানে থাকেন।' },
-            { id: 101, word: 'Musik', theme: 'Hobby', bn: 'গান', q1: 'Hören Sie gern Musik?',
-                q1_bn: 'আপনি কি গান শুনতে পছন্দ করেন?', a1: 'Ja, ich liebe Popmusik.', a1_bn: 'হাঁ, আমি পপ সংগীত ভালোবাসি।',
-                q2: 'Spielen Sie Musik?', q2_bn: 'আপনি কি গান বাজান?', a2: 'Ja, ich spiele Gitarre.',
-                a2_bn: 'হাঁ, আমি গিটার বাজাই।' },
             { id: 102, word: 'Schwimmbad', theme: 'Freizeit', bn: 'সুইমিং পুল', q1: 'Wann gehen Sie ins Schwimmbad?',
                 q1_bn: 'আপনি কখন সুইমিং পুলে যান?', a1: 'Am Samstagnachmittag.', a1_bn: 'শনিবার বিকেলে।',
                 q2: 'Ist das Schwimmbad groß?', q2_bn: 'সুইমিং পুলটি কি বড়?', a2: 'Ja, das Schwimmbad ist groß.',
@@ -823,58 +791,12 @@
                 q1_bn: 'আপনি কি স্পোর্টস ক্লাবে আছেন?', a1: 'Ja, ich spiele Fußball.', a1_bn: 'হাঁ, আমি ফুটবল খেলি।',
                 q2: 'Ist der Verein gut?', q2_bn: 'ক্লাবটি কি ভালো?', a2: 'Ja, der Verein ist sehr gut.',
                 a2_bn: 'হাঁ, ক্লাবটি খুব ভালো।' },
-            { id: 104, word: 'Wandern', theme: 'Sport', bn: 'হাইকিং', q1: 'Gehen Sie am Sonntag wandern?',
-                q1_bn: 'আপনি কি রবিবার হাইকিংয়ে যান?', a1: 'Ja, das macht Spaß.', a1_bn: 'হাঁ, এটি অনেক আনন্দদায়ক।',
-                q2: 'Wandern Sie oft im Wald?', q2_bn: 'আপনি কি প্রায়ই বনে হাইকিং করেন?',
-                a2: 'Ja, ich wandere oft im Wald.', a2_bn: 'হাঁ, আমি প্রায়ই বনে হাইকিং করি।' },
-            { id: 105, word: 'Fahrrad', theme: 'Reisen', bn: 'সাইকেল', q1: 'Fahren Sie mit dem Fahrrad?',
-                q1_bn: 'আপনি কি সাইকেলে করে যান?', a1: 'Ja, das ist gesund.', a1_bn: 'হাঁ, এটি স্বাস্থ্যের জন্য ভালো।',
-                q2: 'Ist das Fahrrad neu?', q2_bn: 'সাইকেলটি কি নতুন?', a2: 'Ja, das Fahrrad ist neu.',
-                a2_bn: 'হাঁ, সাইকেলটি নতুন।' },
-            { id: 106, word: 'Geburtstag', theme: 'Familie', bn: 'জন্মদিন', q1: 'Machen Sie eine Party?',
-                q1_bn: 'আপনি কি একটি পার্টি দিচ্ছেন?', a1: 'Ja, am Samstagabend.', a1_bn: 'হাঁ, শনিবার সন্ধ্যায়।',
-                q2: 'Feiern Sie Ihren Geburtstag?', q2_bn: 'আপনি কি আপনার জন্মদিন উদযাপন করেন?',
-                a2: 'Ja, ich feiere mit Freunden.', a2_bn: 'হাঁ, আমি বন্ধুদের সাথে উদযাপন করি।' },
-            { id: 107, word: 'Wochenende', theme: 'Freizeit', bn: 'সপ্তাহান্ত', q1: 'Was machen Sie am Wochenende?',
-                q1_bn: 'আপনি সপ্তাহান্তে কী করেন?', a1: 'Ich treffe Freunde.', a1_bn: 'আমি বন্ধুদের সাথে দেখা করি।',
-                q2: 'Haben Sie am Wochenende frei?', q2_bn: 'আপনার কি সপ্তাহান্তে ছুটি থাকে?',
-                a2: 'Ja, ich habe frei.', a2_bn: 'হাঁ, আমার ছুটি থাকে।' },
-            { id: 108, word: 'Frühstück', theme: 'Essen', bn: 'সকালের নাস্তা', q1: 'Trinken Sie Tee zum Frühstück?',
-                q1_bn: 'আপনি কি সকালের নাস্তায় চা পান করেন?', a1: 'Ja, mit viel Zucker.',
-                a1_bn: 'হাঁ, অনেক চিনি দিয়ে।', q2: 'Essen Sie Brot zum Frühstück?',
-                q2_bn: 'আপনি কি সকালের নাস্তায় রুটি খান?', a2: 'Ja, ich esse Brot.', a2_bn: 'হাঁ, আমি রুটি খাই।' },
             { id: 109, word: 'Brief', theme: 'Post', bn: 'চিঠি', q1: 'Schreiben Sie einen Brief?',
                 q1_bn: 'আপনি কি একটি চিঠি লিখছেন?', a1: 'Ja, an meine Tante.', a1_bn: 'হাঁ, আমার খালাম্মাকে।',
                 q2: 'Brauchen Sie eine Briefmarke?', q2_bn: 'আপনার কি একটি ডাকটিকিট প্রয়োজন?',
                 a2: 'Ja, ich brauche eine Briefmarke.', a2_bn: 'হাঁ, আমার একটি ডাকটিকিট প্রয়োজন।' },
-            { id: 110, word: 'Geld', theme: 'Bank', bn: 'টাকা', q1: 'Haben Sie Geld dabei?',
-                q1_bn: 'আপনার কাছে কি টাকা আছে?', a1: 'Ja, ich habe 50 Euro.', a1_bn: 'হাঁ, আমার কাছে ৫০ ইউরো আছে।',
-                q2: 'Brauchen Sie Geld?', q2_bn: 'আপনার কি টাকা প্রয়োজন?', a2: 'Ja, ich brauche Geld.',
-                a2_bn: 'হাঁ, আমার টাকা প্রয়োজন।' },
-            { id: 111, word: 'Rucksack', theme: 'Urlaub', bn: 'ব্যাকপ্যাক', q1: 'Ist Ihr Rucksack neu?',
-                q1_bn: 'আপনার ব্যাকপ্যাকটি কি নতুন?', a1: 'Ja, er gefällt mir.', a1_bn: 'হাঁ, এটি আমার পছন্দ হয়েছে।',
-                q2: 'Kaufen Sie einen Rucksack?', q2_bn: 'আপনি কি একটি ব্যাকপ্যাক কিনছেন?',
-                a2: 'Ja, ich kaufe einen Rucksack.', a2_bn: 'হাঁ, আমি একটি ব্যাকপ্যাক কিনছি।' },
-            { id: 112, word: 'Hobby', theme: 'Freizeit', bn: 'শখ', q1: 'Was ist Ihr Hobby?',
-                q1_bn: 'আপনার শখ কী?', a1: 'Mein Hobby ist Kochen.', a1_bn: 'আমার শখ রান্না করা।',
-                q2: 'Haben Sie Zeit für Ihr Hobby?', q2_bn: 'আপনার কি আপনার শখের জন্য সময় আছে?',
-                a2: 'Ja, am Wochenende.', a2_bn: 'হাঁ, সপ্তাহান্তে।' },
-            { id: 113, word: 'Kasse', theme: 'Einkaufen', bn: 'ক্যাশ কাউন্টার', q1: 'Wo ist die Kasse, bitte?',
-                q1_bn: 'ক্যাশ কাউন্টার কোথায়, দয়া করে বলবেন?', a1: 'Die Kasse ist da vorn.',
-                a1_bn: 'ক্যাশ কাউন্টার ওই সামনে।', q2: 'Ist die Kasse frei?', q2_bn: 'ক্যাশ কাউন্টার কি খালি?',
-                a2: 'Ja, die Kasse ist frei.', a2_bn: 'হাঁ, ক্যাশ কাউন্টার খালি।' },
-            { id: 114, word: 'Arbeitsplatz', theme: 'Beruf', bn: 'কর্মস্থল', q1: 'Wie finden Sie Ihren Arbeitsplatz?',
-                q1_bn: 'আপনার কর্মস্থলটি আপনার কাছে কেমন লাগে?', a1: 'Er ist sehr schön.',
-                a1_bn: 'এটি খুবই সুন্দর।', q2: 'Wo ist Ihr Arbeitsplatz?', q2_bn: 'আপনার কর্মস্থল কোথায়?',
-                a2: 'Mein Arbeitsplatz ist in Berlin.', a2_bn: 'আমার কর্মস্থল বার্লিনে।' },
-            { id: 115, word: 'Stadtplan', theme: 'Reisen', bn: 'মানচিত্র', q1: 'Haben Sie einen Stadtplan?',
-                q1_bn: 'আপনার কাছে কি শহরের মানচিত্র আছে?', a1: 'Ja, hier bitte.', a1_bn: 'হাঁ, এই নিন।',
-                q2: 'Brauchen Sie einen Stadtplan?', q2_bn: 'আপনার কি একটি শহরের মানচিত্র প্রয়োজন?',
-                a2: 'Ja, ich brauche einen Stadtplan.', a2_bn: 'হাঁ, আমার একটি শহরের মানচিত্র প্রয়োজন।' }
         ];
-
-        // ---- Teil 3: 118 Einträge ----
-        const T3_DATA = [
+const T3_DATA = [
             { id: 1, article: 'Das', word: 'Das Glas Wasser', icon: '🥛', bn: 'এক গ্লাস পানি',
                 q1: 'Können Sie mir bitte ein Glas Wasser geben?', q1_bn: 'আপনি কি আমাকে দয়া করে এক গ্লাস পানি দিতে পারেন?',
                 a1: 'Ja, natürlich. Hier bitte.', a1_bn: 'হাঁ, অবশ্যই। এই নিন।',
@@ -1538,10 +1460,11 @@
             showToast('গতি: ' + ttsSpeed.toFixed(1) + 'x');
         }
 
-        function changePageZoom(amount) {
-            pageZoom = Math.min(120, Math.max(80, pageZoom + amount));
+        function changePageZoom(value) {
+            pageZoom = Number(value);
             document.body.style.zoom = pageZoom + '%';
-            document.getElementById('page-zoom-label').textContent = pageZoom + '%';
+            const zoomSelect = document.getElementById('page-zoom');
+            if (zoomSelect) zoomSelect.value = String(pageZoom);
         }
 
         function toggleTheme() {
@@ -1779,6 +1702,7 @@
         function generateQuiz() {
             const filter = document.getElementById('quiz-filter').value;
             const count = parseInt(document.getElementById('quiz-count').value);
+            const search = (document.getElementById('quiz-search')?.value || '').trim().toLocaleLowerCase();
             let pool = [];
             const uniqueT3 = [];
             const seenT3Words = new Set();
@@ -1789,6 +1713,25 @@
             });
             if (filter === 'all' || filter === 't2') pool = pool.concat(T2_DATA.map(d => ({ type: 't2', data: d })));
             if (filter === 'all' || filter === 't3') pool = pool.concat(uniqueT3.map(d => ({ type: 't3', data: d })));
+            if (search) {
+                pool = pool.filter(({ type, data }) => {
+                    const haystack = [
+                        type,
+                        data.word,
+                        data.theme,
+                        data.bn,
+                        data.q1,
+                        data.q1_bn,
+                        data.a1,
+                        data.a1_bn,
+                        data.q2,
+                        data.q2_bn,
+                        data.a2,
+                        data.a2_bn
+                    ].join(' ').toLocaleLowerCase();
+                    return haystack.includes(search);
+                });
+            }
             if (count > 0 && count < pool.length) {
                 pool = pool.sort(() => Math.random() - 0.5).slice(0, count);
             } else {
@@ -1955,6 +1898,7 @@
 
             document.getElementById('quiz-filter').addEventListener('change', resetQuiz);
             document.getElementById('quiz-count').addEventListener('change', resetQuiz);
+            document.getElementById('quiz-search').addEventListener('input', resetQuiz);
 
             const quizView = document.getElementById('view-quiz');
             quizView.addEventListener('touchstart', event => {
